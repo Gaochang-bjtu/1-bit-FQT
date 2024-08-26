@@ -1,0 +1,66 @@
+# Define a list of steps that should be followed
+step0:
+  pre_activation:
+    name: "BasicInputBinarizer"
+  post_activation:
+    name: "BasicScaleBinarizer"
+  weight:
+    name: "nn.Identity"
+  # Either provide the layers name, or use one of the reserved keyword as shown bellow
+  ignore_layer_names:
+    - "_last_"
+    - "_first_"
+    - "layer2.0.downsample.1"
+    - "layer3.0.downsample.1"
+    - "layer4.0.downsample.1"
+step1:
+  pre_activation:
+    name: "BasicInputBinarizer"
+  post_activation:
+    name: "BasicScaleBinarizer"
+  weight:
+    name: "XNORWeightBinarizer"
+    args:
+      compute_alpha: False
+      center_weights: False
+  ignore_layer_names:
+    - "_last_"
+    - "_first_"
+    - "layer2.0.downsample.1"
+    - "layer3.0.downsample.1"
+    - "layer4.0.downsample.1"
+    - "blocks.9.mlp_channels.fc1"
+    - "blocks.9.mlp_channels.fc2"
+    - "blocks.10.mlp_channels.fc1"
+    - "blocks.10.mlp_channels.fc2"
+    - "blocks.11.mlp_channels.fc1"
+    - "blocks.11.mlp_channels.fc2"
+step2:
+  pre_activation:
+    name: "nn.Identity"
+  post_activation:
+    name: "nn.Identity"
+  weight:
+    name: "nn.Identity"
+  # Either provide the layers name, or use one of the reserved keyword as shown bellow
+  ignore_layer_names:
+    - "_last_"
+    - "_first_"
+step3:
+  pre_activation:
+    name: "BasicInputBinarizer"
+  post_activation:
+    name: "BasicScaleBinarizer"
+  weight:
+    name: "XNORWeightBinarizer"
+    args:
+      compute_alpha: False
+      center_weights: False
+  ignore_layer_names:
+    - "_last_"
+    - "_first_"
+
+    - "layer1.0.conv1"
+    - "layer2.0.downsample.1"
+    - "layer3.0.downsample.1"
+    - "layer4.0.downsample.1"
